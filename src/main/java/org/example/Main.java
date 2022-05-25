@@ -27,15 +27,15 @@ public class Main {
 
             // place order(s) and get feedback
             switch (p.getMealType()) {
-                case "Breakfast":
+                case "breakfast":
                     BreakfastOrder bo = new BreakfastOrder(p.getMainCount(), p.getSideCount(), p.getDrinkCount());
                     System.out.println(bo.place());
                     break;
-                case "Lunch":
+                case "lunch":
                     LunchOrder lo = new LunchOrder(p.getMainCount(), p.getSideCount(), p.getDrinkCount());
                     System.out.println(lo.place());
                     break;
-                case "Dinner":
+                case "dinner":
                     DinnerOrder dio = new DinnerOrder(p.getMainCount(), p.getSideCount(), p.getDrinkCount(),p.getDesertCount());
                     System.out.println(dio.place());
                     break;

@@ -3,7 +3,7 @@ package org.example;
 import org.javatuples.Pair;
 
 public class BreakfastOrder extends Order {
-    private Breakfast b;
+    private final Breakfast b;
 
     public BreakfastOrder(int mainCount, int sideCount, int drinkCount) {
         if (drinkCount != 0)
@@ -11,9 +11,9 @@ public class BreakfastOrder extends Order {
         else
             this.b = new Breakfast();
 
-        this.main = new Pair<String, Integer>(b.getMain(), mainCount);
-        this.side = new Pair<String, Integer>(b.getSide(), sideCount);
-        this.drink = new Pair<String, Integer>(b.getDrink(), drinkCount);
+        this.main = new Pair<>(b.getMain(), mainCount);
+        this.side = new Pair<>(b.getSide(), sideCount);
+        this.drink = new Pair<>(b.getDrink(), drinkCount);
     }
 
     @Override

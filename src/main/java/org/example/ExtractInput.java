@@ -11,7 +11,7 @@ public class ExtractInput {
     private int desertCount;
 
     public ExtractInput(String in) {
-        this.in = in;
+        this.in = in.toLowerCase();
     }
 
     public String getMealType() {
@@ -37,7 +37,7 @@ public class ExtractInput {
         this.sideCount = ((int) Arrays.stream(ids).filter(e -> e == 2).count());
         this.drinkCount = ((int) Arrays.stream(ids).filter(e -> e == 3).count());
 
-        if (in.matches("[Dinner]*\\s[1-4,]*[1-4]"))
+        if (in.matches("[dinner]*\\s[1-4,]*[1-4]"))
                 this.desertCount = ((int) Arrays.stream(ids).filter(e -> e == 4).count());
 
         return true;
@@ -45,8 +45,8 @@ public class ExtractInput {
 
     // check that user input satisfies rule 1. An order consists of a meal and collection of comma separated item Ids
     public boolean inputMatch() {
-        return in.matches("[Breakfast]*\\s[1-3,]*[1-3]") || in.matches("[Lunch]*\\s[1-3,]*[1-3]") ||
-                in.matches("[Dinner]*\\s[1-4,]*[1-4]");
+        return in.matches("[breakfast]*\\s[1-3,]*[1-3]") || in.matches("[lunch]*\\s[1-3,]*[1-3]") ||
+                in.matches("[dinner]*\\s[1-4,]*[1-4]");
     }
 
 }

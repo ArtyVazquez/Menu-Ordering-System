@@ -3,7 +3,7 @@ package org.example;
 import org.javatuples.Pair;
 
 public class DinnerOrder extends Order{
-    private Dinner d;
+    private final Dinner d;
     private final Pair<String, Integer> desert;
 
     public DinnerOrder(int mainCount, int sideCount, int drinkCount, int desertCount) {
