@@ -8,5 +8,4 @@ public class Breakfast extends Meal {
     Breakfast() {
         super("Eggs", "Toast");
     }
-
 }

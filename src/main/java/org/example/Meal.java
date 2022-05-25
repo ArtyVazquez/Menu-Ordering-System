@@ -1,6 +1,5 @@
 package org.example;
 
-// This class will be the superclass. Will be inherited by the Breakfast, Lunch and Dinner class
 public class Meal {
     private String main;
     private String side;
@@ -29,17 +28,4 @@ public class Meal {
     public String getMain() {
         return main;
     }
-
-    public void setDrink(String drink) {
-        this.drink = drink;
-    }
-
-    public void setMain(String main) {
-        this.main = main;
-    }
-
-    public void setSide(String side) {
-        this.side = side;
-    }
-
 }

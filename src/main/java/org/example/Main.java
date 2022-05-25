@@ -8,9 +8,9 @@
 package org.example;
 
 import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-
 
         while (true) {
             // Get the user input
@@ -18,32 +18,31 @@ public class Main {
             System.out.print("Order: ");
             String order = myObj.nextLine();
 
-            // input form ------>  menu, 1,2,3
-            InputParser p = new InputParser(order);
-
-            if  (!p.parse()) {
+            // From user input extract the data and check that it's valid
+            ExtractInput p = new ExtractInput(order);
+            if  (!p.extract()) {
                 System.out.println("Invalid order...");
                 continue;
             }
 
+            // place order(s) and get feedback
             switch (p.getMealType()) {
                 case "Breakfast":
-                    System.out.println("Breakfast");
                     BreakfastOrder bo = new BreakfastOrder(p.getMainCount(), p.getSideCount(), p.getDrinkCount());
-                    bo.verifyOrder();
+                    System.out.println(bo.place());
                     break;
                 case "Lunch":
-                    System.out.println("Lunch");
                     LunchOrder lo = new LunchOrder(p.getMainCount(), p.getSideCount(), p.getDrinkCount());
-                    lo.verifyOrder();
+                    System.out.println(lo.place());
                     break;
                 case "Dinner":
-                    System.out.println("Dinner");
+                    DinnerOrder dio = new DinnerOrder(p.getMainCount(), p.getSideCount(), p.getDrinkCount(),p.getDesertCount());
+                    System.out.println(dio.place());
                     break;
                 default:
                     System.out.println("Invalid Order...");
             }
-
         }
+
     }
 }

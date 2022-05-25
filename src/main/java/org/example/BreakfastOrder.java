@@ -1,48 +1,43 @@
 package org.example;
+
 import org.javatuples.Pair;
 
 public class BreakfastOrder extends Order {
     private Breakfast b;
 
-    public BreakfastOrder(int one, int two, int three) {
-        if (three != 0)
+    public BreakfastOrder(int mainCount, int sideCount, int drinkCount) {
+        if (drinkCount != 0)
             this.b = new Breakfast("Coffee");
         else
             this.b = new Breakfast();
 
-        this.main = new Pair<String, Integer>(b.getMain(), one);
-        this.side = new Pair<String, Integer>(b.getSide(), two);
-        this.drink = new Pair<String, Integer>(b.getDrink(), three);
+        this.main = new Pair<String, Integer>(b.getMain(), mainCount);
+        this.side = new Pair<String, Integer>(b.getSide(), sideCount);
+        this.drink = new Pair<String, Integer>(b.getDrink(), drinkCount);
     }
 
     @Override
-   public boolean verifyOrder() {
-        boolean correctMain = true;
-        boolean correctSide= true;
+   public String place() {
 
-        if (main.getValue1() != 1)
-            correctMain = false;
-        if (side.getValue1() != 1)
-            correctSide = false;
-
-        if (correctMain && correctSide) {
-            System.out.print(main.getValue0() + ", " + side.getValue0() + ", " + drink.getValue0());
-            if (this.drink.getValue1() > 1)
-              System.out.println("(" + drink.getValue1() + ")");
-            else
-              System.out.println();
+        String ret;
+        if (main.getValue1() > 1 && side.getValue1() > 1) {
+            ret = String.format("Unable to process: %s cannot be ordered more than once, %s cannot be ordered more than once", main.getValue0(), side.getValue0());
+        } else if (main.getValue1() > 1) {
+            ret = String.format("Unable to process: %s cannot be ordered more than once",  main.getValue0());
+        } else if (side.getValue1() > 1) {
+            ret = String.format("Unable to process: %s cannot be ordered more than once",  side.getValue0());
+        } else if (main.getValue1() == 0 && side.getValue1() == 0) {
+            ret = "Unable to process: Main is missing, side is missing";
+        } else if (main.getValue1() == 0) {
+            ret = "Unable to process: Main is missing";
+        } else if (side.getValue1() == 0) {
+            ret = "Unable to process: Side is missing";
         } else {
-            System.out.print("Unable to process: ");
-            if (!correctMain && !correctSide) {
-                System.out.println("Main is missing, side is missing" );
-            } else if (!correctMain) {
-                System.out.println("Main is missing");
-            } else {
-                System.out.println("Side is missing");
-            }
+            ret = String.format("%s, %s, %s", main.getValue0(), side.getValue0(),
+                    drink.getValue0().concat(drink.getValue1() > 1 ? "(" + drink.getValue1() + ")" : ""));
         }
 
-        return correctMain && correctSide;
+        return ret;
    }
 
 }
